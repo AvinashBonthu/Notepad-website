@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>notepad</title>
+	<link rel="stylesheet" type="text/css" href="./styles/notepad.css">
+</head>
+<body>
+
+	<h2>Notepad</h2>
+	
+		<div class="setup" >
+			<select class="look" onchange="changeFont(this)">
+				<option disabled="disabled" selected="selected" visibility="hidden">Select an option.</option>
+				<option value=
+				"Times New Roman">Times New Roman</option>
+				<option value="Arial Black">Arial Black</option>
+				<option value="Georgia">Georgia</option>
+				
+			</select>
+			<select class="size" onchange="changeSize(this)">
+				<option disabled="disabled" selected="selected">Select an option.</option>
+				<option>8</option>
+				<option>9</option>
+				<option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>14</option>
+				<option>16</option>
+				<option>18</option>
+				<option>20</option>
+				<option>22</option>
+				<option>24</option>
+				<option>26</option>
+				<option>28</option>
+				<option>36</option>
+				<option>48</option>
+			</select>
+
+			<input type="button" name="Bold" class="upper" value="Bold" onclick="Bold()">
+			<input type="button" name="italic" class="upper" value="Italic" onclick="Italic()">
+			<input type="button" name="underline" class="upper" value="Underline" onclick="Underline()">
+			<br><br>
+
+			<textarea  id="content" rows="20" cols="100" placeholder="Enter your text here ......"></textarea>
+			<input type="reset" value="Clear" onclick="remove()">
+			<input type="button" value="Reset" class="normal" onclick="reset1()">
+		</div>
+		<script type="text/javascript">
+			function changeFont(font) {
+				document.getElementById('content').style.fontFamily = font.value;
+			}
+
+			function changeSize(n){
+				var s = document.getElementById('content');
+				s.style.fontSize=n.value+'px';
+			}
+
+			function Bold() {
+				var bol = document.getElementById('content').style.fontWeight;
+				if(bol!=='bold'){
+					document.getElementById('content').style.fontWeight = 'bold';
+				}
+				else{
+					document.getElementById('content').style.fontWeight='normal';
+				}
+
+			}
+			function Italic() {
+				var itl = document.getElementById('content').style.fontStyle;
+				if(itl !== 'italic'){
+					document.getElementById('content').style.fontStyle = 'Italic';
+				}
+				else{
+					document.getElementById('content').style.fontStyle='normal';
+				}
+
+			}
+			function Underline() {
+				var und = document.getElementById('content').style.textDecoration;
+				if(und!=='underline'){
+					document.getElementById('content').style.textDecoration = 'underline';
+				}
+				else{
+					document.getElementById('content').style.textDecoration='none';
+				}
+
+			}
+
+			function reset1() {
+				document.getElementById('content').style.fontFamily = 'sans-serif';
+				document.getElementById('content').style.textDecoration = 'none';
+				document.getElementById('content').style.fontWeight = 'normal';
+				document.getElementById('content').style.fontStyle = 'normal';
+				document.getElementById('content').style.fontSize = 15 + 'px';
+			}
+
+			function remove() {
+				document.getElementById('content').value = "";
+			}
+		</script>
+
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/js/notepad.js">
+		</script>
+		<script type="text/javascript" src="/js/libs/moment.js"></script>
+		<script type="text/javascript" src="/js/libs/mustache.js"></script>
+
+</body>
+</html>
